@@ -31,6 +31,16 @@ export default class CreateTool1590267109376 implements MigrationInterface {
             name: 'tags',
             type: 'varchar',
           },
+          {
+            name: 'created_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
+          {
+            name: 'updated_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
         ],
       }),
     );
