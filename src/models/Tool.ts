@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 
 @Entity('tools')
-class Tools {
+class Tool {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -30,4 +30,4 @@ class Tools {
   updated_at: Date;
 }
 
-export default Tools;
+export default Tool;

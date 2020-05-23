@@ -1,0 +1,43 @@
+import { getRepository } from 'typeorm';
+
+import AppError from '../error/AppError';
+
+import Tool from '../models/Tool';
+
+interface Request {
+  title: string;
+  link: string;
+  description: string;
+  tags: string;
+}
+
+class CreateToolService {
+  public async execute({
+    title,
+    link,
+    description,
+    tags,
+  }: Request): Promise<Tool> {
+    const toolsRepository = getRepository(Tool);
+
+    //[x] verficia se a tool já existe
+    //[x] dispara um erro se já existe
+    //[x] cria uma nova tool
+
+    const checkToolExists = await toolsRepository.findOne({
+      where: { title },
+    });
+
+    if (checkToolExists) {
+      throw new AppError('This tool already exists.');
+    }
+
+    const tool = toolsRepository.create({ title, link, description, tags });
+
+    await toolsRepository.save(tool);
+
+    return tool;
+  }
+}
+
+export default CreateToolService;

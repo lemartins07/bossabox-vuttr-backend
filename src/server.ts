@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 
 import express, { Request, Response, NextFunction } from 'express';
+import 'express-async-errors';
 
 import routes from './routes';
 import AppError from './error/AppError';
@@ -16,7 +17,7 @@ app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
   if (err instanceof AppError) {
     return response.status(err.statusCode).json({
       status: 'error',
-      message: err.statusCode,
+      message: err.message,
     });
   }
 
