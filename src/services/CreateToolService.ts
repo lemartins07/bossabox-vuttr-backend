@@ -20,10 +20,6 @@ class CreateToolService {
   }: Request): Promise<Tool> {
     const toolsRepository = getRepository(Tool);
 
-    //[x] verficia se a tool já existe
-    //[x] dispara um erro se já existe
-    //[x] cria uma nova tool
-
     const checkToolExists = await toolsRepository.findOne({
       where: { title },
     });
